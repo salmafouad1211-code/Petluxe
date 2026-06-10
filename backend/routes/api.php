@@ -20,6 +20,14 @@ use App\Http\Controllers\SubscriptionController;
 */
 
 // ================= PUBLIC ROUTES =================
+Route::get('/setup', function() {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        return response()->json(['message' => 'Database migrations ran successfully!', 'output' => \Illuminate\Support\Facades\Artisan::output()]);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()]);
+    }
+});
 Route::middleware('throttle:10,1')->post('/register', [AuthController::class, 'register']);
 Route::middleware('throttle:5,1')->post('/login', [AuthController::class, 'login']);
 

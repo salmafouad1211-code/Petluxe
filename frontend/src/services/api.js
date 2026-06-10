@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',
+  baseURL: 'https://petluxe-backend-production-9881.up.railway.app/api',
   headers: {
     'Accept': 'application/json',
   },
